@@ -1,0 +1,28 @@
+steps:
+  # 1. Build the container image using the project's Dockerfile
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/gen-lang-client-0447436480/eman-qr:latest', '.']
+
+  # 2. Push image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/gen-lang-client-0447436480/eman-qr:latest']
+
+  # 3. Deploy to Google Cloud Run in project gen-lang-client-0447436480
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'eman-qr'
+      - '--image'
+      - 'gcr.io/gen-lang-client-0447436480/eman-qr:latest'
+      - '--region'
+      - 'europe-west2'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--project'
+      - 'gen-lang-client-0447436480'
+
+images:
+  - 'gcr.io/gen-lang-client-0447436480/eman-qr:latest'

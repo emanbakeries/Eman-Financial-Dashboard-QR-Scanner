@@ -1,0 +1,6 @@
+{
+  "name": "Eman QR",
+  "description": "Mobile-first PWA for Eman Bakeries to scan Saudi ZATCA invoice QR codes and securely transmit payloads to external APIs.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
